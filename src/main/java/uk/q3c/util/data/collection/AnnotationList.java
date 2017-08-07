@@ -11,7 +11,7 @@
  *
  */
 
-package uk.q3c.util.collection;
+package uk.q3c.util.data.collection;
 
 import com.google.common.collect.ImmutableList;
 import org.apache.commons.collections4.ListUtils;
