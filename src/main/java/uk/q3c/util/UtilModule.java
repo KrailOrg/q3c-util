@@ -7,7 +7,9 @@ import uk.q3c.util.clazz.ClassNameUtils;
 import uk.q3c.util.clazz.DefaultClassNameUtils;
 import uk.q3c.util.clazz.DefaultUnenhancedClassIdentifier;
 import uk.q3c.util.clazz.UnenhancedClassIdentifier;
+import uk.q3c.util.data.DataConverter;
 import uk.q3c.util.data.DataItemConverter;
+import uk.q3c.util.data.DefaultDataConverter;
 import uk.q3c.util.data.collection.AnnotationList;
 import uk.q3c.util.data.collection.AnnotationListConverter;
 
@@ -30,6 +32,7 @@ public class UtilModule extends AbstractModule {
         customDataConverters.addBinding(AnnotationList.class).to(AnnotationListConverter.class);
         bindClassNameUtils();
         bindClassIdentifier();
+        bindDataConverter();
 
 
     }
@@ -40,5 +43,12 @@ public class UtilModule extends AbstractModule {
 
     protected void bindClassNameUtils() {
         bind(ClassNameUtils.class).to(DefaultClassNameUtils.class);
+    }
+
+    /**
+     * Override this method to provide your own {@link DataConverter} implementation.
+     */
+    protected void bindDataConverter() {
+        bind(DataConverter.class).to(DefaultDataConverter.class);
     }
 }

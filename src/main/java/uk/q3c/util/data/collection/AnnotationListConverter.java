@@ -18,6 +18,7 @@ import com.google.common.collect.ImmutableList;
 import org.apache.commons.lang3.StringEscapeUtils;
 import uk.q3c.util.data.ClassConverter;
 import uk.q3c.util.data.ConversionException;
+import uk.q3c.util.data.DataItemConverter;
 
 import javax.annotation.Nonnull;
 import java.lang.annotation.Annotation;
@@ -33,7 +34,7 @@ import static com.google.common.base.Preconditions.*;
  * <p>
  * Created by David Sowerby on 04/08/15.
  */
-public class AnnotationListConverter {
+public class AnnotationListConverter implements DataItemConverter<AnnotationList> {
 
     public final static String separator = "~~";
 
