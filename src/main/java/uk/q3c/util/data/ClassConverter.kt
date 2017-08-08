@@ -23,7 +23,7 @@ import org.apache.commons.lang3.ClassUtils
  *
  * Created by David Sowerby on 27/06/15.
  */
-class ClassConverter : DataConverter<Class<*>> {
+class ClassConverter : DataItemConverter<Class<*>> {
     /**
      * {@inheritDoc}
      */

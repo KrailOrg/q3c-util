@@ -25,7 +25,7 @@ import static com.google.common.base.Preconditions.*;
  * <p>
  * Created by David Sowerby on 27/06/15.
  */
-public class EnumConverter implements DataConverter<Enum> {
+public class EnumConverter implements DataItemConverter<Enum> {
     /**
      * {@inheritDoc}
      */

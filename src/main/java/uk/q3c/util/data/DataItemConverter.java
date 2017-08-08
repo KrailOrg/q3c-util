@@ -16,7 +16,7 @@ import javax.annotation.Nonnull;
 /**
  * Created by David Sowerby on 06/08/15.
  */
-public interface DataConverter<V> {
+public interface DataItemConverter<V> {
 
     V convertToModel(String value) throws ConversionException;
 

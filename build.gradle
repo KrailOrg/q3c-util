@@ -20,7 +20,7 @@ apply plugin: 'uk.q3c.kaytee'
 group='uk.q3c.util'
 
 kaytee {
-    baseVersion = "0.8.1.0"
+    baseVersion = "0.9.0.0"
 }
 
 bintray {
@@ -50,6 +50,7 @@ dependencies {
     compile 'org.apache.commons:commons-lang3:' + commonsLangVersion
 
     compile "com.google.inject:guice:$guiceVersion"
+    compile "com.google.inject.extensions:guice-multibindings:$guiceVersion"
     //the easiest way to all the Jung parts
     compile 'net.sf.jung:jung-samples:2.0.1'
     compile 'com.google.code.findbugs:annotations:3.0.0'
