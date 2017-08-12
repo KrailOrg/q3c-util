@@ -20,7 +20,6 @@ import uk.q3c.util.data.ClassConverter;
 import uk.q3c.util.data.ConversionException;
 import uk.q3c.util.data.DataItemConverter;
 
-import javax.annotation.Nonnull;
 import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.List;
@@ -48,7 +47,7 @@ public class AnnotationListConverter implements DataItemConverter<AnnotationList
      * @param model the model to convert
      * @return Comma separated String representation of the list contents
      */
-    public String convertToString(@Nonnull AnnotationList model) {
+    public String convertToString(AnnotationList model) {
         checkNotNull(model);
         if (model.isEmpty()) {
             return "";
@@ -75,7 +74,7 @@ public class AnnotationListConverter implements DataItemConverter<AnnotationList
      * @return Comma separated String representation of the list contents
      * @throws ConversionException if conversion fails
      */
-    public AnnotationList convertToModel(@Nonnull String value) {
+    public AnnotationList convertToModel(String value) {
         checkNotNull(value);
         if (value.isEmpty()) {
             return new AnnotationList();

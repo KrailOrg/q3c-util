@@ -18,7 +18,6 @@ import com.google.common.primitives.Longs;
 import com.google.inject.Inject;
 import uk.q3c.util.clazz.ClassNameUtils;
 
-import javax.annotation.Nonnull;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -47,8 +46,8 @@ public class DefaultDataConverter implements DataConverter {
 
     @SuppressWarnings({"unchecked", "ConstantConditions"})
     @Override
-    @Nonnull
-    public String convertValueToString(@Nonnull Object value) {
+
+    public String convertValueToString(Object value) {
         Class<?> modelType = classNameUtils.classWithEnhanceRemoved(value.getClass());
         if (modelType == String.class) {
             return ((String) value);
@@ -82,8 +81,8 @@ public class DefaultDataConverter implements DataConverter {
 
     @SuppressWarnings({"unchecked", "ConstantConditions"})
     @Override
-    @Nonnull
-    public <V> V convertStringToValue(@Nonnull Class<V> elementClass, @Nonnull String valueString) {
+
+    public <V> V convertStringToValue(Class<V> elementClass, String valueString) {
         if (elementClass == String.class) {
             return ((V) valueString);
         } else if (elementClass == Integer.class) {

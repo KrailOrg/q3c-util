@@ -16,8 +16,6 @@ package uk.q3c.util.data;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import org.apache.commons.lang3.ClassUtils;
 
-import javax.annotation.Nonnull;
-
 import static com.google.common.base.Preconditions.*;
 
 /**
@@ -31,7 +29,7 @@ public class EnumConverter implements DataItemConverter<Enum> {
      */
     @SuppressFBWarnings("EXS_EXCEPTION_SOFTENING_NO_CONSTRAINTS")
     @Override
-    public Enum convertToModel(@Nonnull String value) throws ConversionException {
+    public Enum convertToModel(String value) throws ConversionException {
         checkNotNull(value);
         //slight mis-use of ClassUtils - it is just about the structure of the String
         String constantName = ClassUtils.getShortClassName(value);
@@ -48,7 +46,7 @@ public class EnumConverter implements DataItemConverter<Enum> {
 
 
     @Override
-    public String convertToString(@Nonnull Enum value) {
+    public String convertToString(Enum value) {
         checkNotNull(value);
         return value.getClass()
                 .getName() + '.' + value.name();

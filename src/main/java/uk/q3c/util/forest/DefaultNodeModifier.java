@@ -12,8 +12,6 @@
  */
 package uk.q3c.util.forest;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.util.Comparator;
 
 import static com.google.common.base.Preconditions.*;
@@ -39,7 +37,7 @@ public class DefaultNodeModifier<S, T> implements NodeModifier<S, T> {
 
     @SuppressWarnings("unchecked")
     @Override
-    public T create(T parentNode, @Nonnull S sourceNode) {
+    public T create(T parentNode, S sourceNode) {
         checkNotNull(sourceNode);
         return (T) sourceNode;
     }
@@ -48,7 +46,7 @@ public class DefaultNodeModifier<S, T> implements NodeModifier<S, T> {
      * Does nothing by default
      */
     @Override
-    public void setLeaf(@Nonnull T targetNode) {
+    public void setLeaf(T targetNode) {
 
     }
 
@@ -56,7 +54,7 @@ public class DefaultNodeModifier<S, T> implements NodeModifier<S, T> {
      * Does nothing by default
      */
     @Override
-    public void forceSetLeaf(@Nonnull T targetNode) {
+    public void forceSetLeaf(T targetNode) {
 
     }
 
@@ -64,7 +62,7 @@ public class DefaultNodeModifier<S, T> implements NodeModifier<S, T> {
      * Does nothing by default
      */
     @Override
-    public void setCaption(@Nonnull T targetNode, String caption) {
+    public void setCaption(T targetNode, String caption) {
     }
 
     @Override
@@ -76,7 +74,7 @@ public class DefaultNodeModifier<S, T> implements NodeModifier<S, T> {
      * Does nothing by default
      */
     @Override
-    public void sortChildren(@Nullable T parentNode, @Nonnull Comparator<T> comparator) {
+    public void sortChildren(T parentNode, Comparator<T> comparator) {
 
     }
 

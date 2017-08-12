@@ -12,7 +12,6 @@
  */
 package uk.q3c.util.forest;
 
-import javax.annotation.Nonnull;
 import java.io.Serializable;
 import java.util.Comparator;
 
@@ -39,7 +38,7 @@ public abstract class TargetTreeWrapperBase<S, T> implements TargetTreeWrapper<S
      * Delegates to the  {@link #nodeModifier} if there is one, otherwise does nothing
      */
     @Override
-    public void setLeaf(@Nonnull T node) {
+    public void setLeaf(T node) {
         checkNotNull(node);
         if (nodeModifier != null) {
             nodeModifier.setLeaf(node);
@@ -50,7 +49,7 @@ public abstract class TargetTreeWrapperBase<S, T> implements TargetTreeWrapper<S
      * Forces the {@link #nodeModifier} (if there is one)  to mark {@code as a leaf}, typically when limiting the depth of a copy
      */
     @Override
-    public void forceSetLeaf(@Nonnull T node) {
+    public void forceSetLeaf(T node) {
         checkNotNull(node);
         if (nodeModifier != null) {
             nodeModifier.forceSetLeaf(node);

@@ -13,12 +13,14 @@
 
 package uk.q3c.util.data;
 
-import javax.annotation.Nonnull;
-
 /**
  * Utility to convert a list of values to and from String.  These are not considered suitable for presentation to the user
  * as conversions use a fixed Locale.
  * <p>
+ * To add custom converters for different data types, bind those custom converters using a MapBinder:<br>
+ * <i>MapBinder customDataConverters = MapBinder.newMapBinder(binder(), classLiteral, dataConverterLiteral);</i><br>
+ * <p>
+ * See {@link uk.q3c.util.UtilModule} for an example
  * Created by David Sowerby on 27/06/15.
  */
 public interface DataConverter {
@@ -43,6 +45,6 @@ public interface DataConverter {
      * @throws ConverterException  if no converter is available for the type of V
      * @throws ConversionException if the conversion itself fails
      */
-    @Nonnull
-    <V> V convertStringToValue(@Nonnull Class<V> elementClass, @Nonnull String valueString);
+
+    <V> V convertStringToValue(Class<V> elementClass, String valueString);
 }

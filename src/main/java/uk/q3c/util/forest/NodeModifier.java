@@ -12,8 +12,6 @@
  */
 package uk.q3c.util.forest;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 import java.io.Serializable;
 import java.util.Comparator;
 
@@ -39,7 +37,7 @@ public interface NodeModifier<S, T> extends Serializable {
      * @param sourceNode the node to copy from
      * @return the newly created target node
      */
-    T create(@Nullable T parentNode, @Nonnull S sourceNode);
+    T create(T parentNode, S sourceNode);
 
     /**
      * Return true if a node is attached to its parent on create, otherwise false. If true, consider whether the
@@ -58,7 +56,7 @@ public interface NodeModifier<S, T> extends Serializable {
      * @return a source node given a target node
      */
 
-    S sourceNodeFor(@Nonnull T targetNode);
+    S sourceNodeFor(T targetNode);
 
     /**
      * Some implementations need to mark a node as a leaf. If not needed, implement as an empty method.  This method delegates the decision whether to mark
@@ -67,7 +65,7 @@ public interface NodeModifier<S, T> extends Serializable {
      *
      * @param targetNode the target node to mark
      */
-    void setLeaf(@Nonnull T targetNode);
+    void setLeaf(T targetNode);
 
     /**
      * Some implementations need to mark a node as a leaf. If not needed, implement as an empty method.  This method is called by {@link TreeCopy} to force a
@@ -76,7 +74,7 @@ public interface NodeModifier<S, T> extends Serializable {
      *
      * @param targetNode the target node to mark
      */
-    void forceSetLeaf(@Nonnull T targetNode);
+    void forceSetLeaf(T targetNode);
 
     /**
      * Some implementations, usually in the user interface, require a caption or label. If not required, implement as an empty method
@@ -84,7 +82,7 @@ public interface NodeModifier<S, T> extends Serializable {
      * @param targetNode the target node
      * @param caption    the caption to set in the target node
      */
-    void setCaption(@Nonnull T targetNode, @Nullable String caption);
+    void setCaption(T targetNode, String caption);
 
     /**
      * Sort the children of the {@code parentNode} using {@code comparator}
@@ -92,6 +90,6 @@ public interface NodeModifier<S, T> extends Serializable {
      * @param parentNode the parent whose children are to be sorted
      * @param comparator the comparator to use for the sort
      */
-    void sortChildren(@Nullable T parentNode, @Nonnull Comparator<T> comparator);
+    void sortChildren(T parentNode, Comparator<T> comparator);
 
 }
