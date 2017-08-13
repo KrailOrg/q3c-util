@@ -8,9 +8,13 @@ import uk.q3c.util.clazz.ClassNameUtils
 import uk.q3c.util.clazz.DefaultClassNameUtils
 import uk.q3c.util.clazz.DefaultUnenhancedClassIdentifier
 import uk.q3c.util.clazz.UnenhancedClassIdentifier
+import uk.q3c.util.data.DataConverter
 import uk.q3c.util.data.DataItemConverter
+import uk.q3c.util.data.DefaultDataConverter
 import uk.q3c.util.data.collection.AnnotationList
 import uk.q3c.util.data.collection.AnnotationListConverter
+import uk.q3c.util.text.DefaultMessageFormat
+import uk.q3c.util.text.MessageFormat2
 
 /**
  * Created by David Sowerby on 08 Aug 2017
@@ -47,5 +51,8 @@ class UtilModuleTest extends Specification {
         expect:
         injector.getInstance(ClassNameUtils) instanceof DefaultClassNameUtils
         injector.getInstance(UnenhancedClassIdentifier) instanceof DefaultUnenhancedClassIdentifier
+        injector.getInstance(MessageFormat2) instanceof DefaultMessageFormat
+        injector.getInstance(DataConverter) instanceof DefaultDataConverter
+
     }
 }

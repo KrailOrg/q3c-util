@@ -12,6 +12,8 @@ import uk.q3c.util.data.DataItemConverter;
 import uk.q3c.util.data.DefaultDataConverter;
 import uk.q3c.util.data.collection.AnnotationList;
 import uk.q3c.util.data.collection.AnnotationListConverter;
+import uk.q3c.util.text.DefaultMessageFormat;
+import uk.q3c.util.text.MessageFormat2;
 
 /**
  * Created by David Sowerby on 08 Aug 2017
@@ -33,14 +35,28 @@ public class UtilModule extends AbstractModule {
         bindClassNameUtils();
         bindClassIdentifier();
         bindDataConverter();
+        bindMessageFormat();
 
 
     }
 
+    /**
+     * Override this method to provide your own {@link MessageFormat2} implementation.
+     */
+    protected void bindMessageFormat() {
+        bind(MessageFormat2.class).to(DefaultMessageFormat.class);
+    }
+
+    /**
+     * Override this method to provide your own {@link UnenhancedClassIdentifier} implementation.
+     */
     protected void bindClassIdentifier() {
         bind(UnenhancedClassIdentifier.class).to(DefaultUnenhancedClassIdentifier.class);
     }
 
+    /**
+     * Override this method to provide your own {@link ClassNameUtils} implementation.
+     */
     protected void bindClassNameUtils() {
         bind(ClassNameUtils.class).to(DefaultClassNameUtils.class);
     }
