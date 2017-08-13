@@ -20,7 +20,7 @@ apply plugin: 'uk.q3c.kaytee'
 group='uk.q3c.util'
 
 kaytee {
-    baseVersion = "0.11.0.0"
+    baseVersion = "0.12.0.0"
 }
 
 bintray {

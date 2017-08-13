@@ -16,7 +16,9 @@ package uk.q3c.util.data;
 import com.google.common.primitives.Ints;
 import com.google.common.primitives.Longs;
 import com.google.inject.Inject;
+import uk.q3c.util.DataListConverter;
 import uk.q3c.util.clazz.ClassNameUtils;
+import uk.q3c.util.data.collection.DataList;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -51,6 +53,8 @@ public class DefaultDataConverter implements DataConverter {
         Class<?> modelType = classNameUtils.classWithEnhanceRemoved(value.getClass());
         if (modelType == String.class) {
             return ((String) value);
+        } else if (modelType.isAssignableFrom(DataList.class)) {
+            return new DataListConverter(this).convertToString((DataList) (value));
         } else if (modelType == Integer.class) {
             return Ints.stringConverter()
                     .reverse()
@@ -107,6 +111,21 @@ public class DefaultDataConverter implements DataConverter {
         }
         String msg = "Conversion to data type of '" + elementClass + "' is not supported";
         throw new ConverterException(msg);
+    }
+
+    public <C, E> DataList<E> convertStringToCollection(Class<C> collectionClass, Class<E> elementClass, String stringValue) {
+        return convertStringToCollection(collectionClass, elementClass, stringValue, ",");
+    }
+
+    @Override
+    public <C, E> DataList<E> convertStringToCollection(Class<C> collectionClass, Class<E> elementClass, String stringValue, String separator) {
+        if (collectionClass.isAssignableFrom(DataList.class)) {
+            DataListConverter<E> converter = new DataListConverter<>(this);
+            return converter.convertToModel(elementClass, stringValue, separator);
+        } else {
+            String msg = "Conversion to collection type of '" + collectionClass + "' is not supported";
+            throw new ConverterException(msg);
+        }
     }
 
 

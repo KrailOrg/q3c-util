@@ -16,10 +16,9 @@ package uk.q3c.util.data.collection;
 import com.google.common.collect.ImmutableList;
 import org.apache.commons.collections4.ListUtils;
 
-import java.io.Serializable;
+import javax.annotation.concurrent.Immutable;
 import java.lang.annotation.Annotation;
 import java.util.List;
-import java.util.Set;
 
 
 /**
@@ -28,7 +27,8 @@ import java.util.Set;
  * <p>
  * Created by David Sowerby on 07/08/15.
  */
-public class AnnotationList implements Serializable {
+@Immutable
+public class AnnotationList {
 
     protected final ImmutableList<Class<? extends Annotation>> list;
 
@@ -51,10 +51,6 @@ public class AnnotationList implements Serializable {
     public AnnotationList(Class<? extends Annotation>... elements) {
         super();
         this.list = (elements == null) ? ImmutableList.of() : ImmutableList.copyOf(elements);
-    }
-
-    public AnnotationList(Set<? extends Class<? extends Annotation>> set) {
-        this.list = ImmutableList.copyOf(set);
     }
 
 

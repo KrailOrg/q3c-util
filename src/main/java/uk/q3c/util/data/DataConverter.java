@@ -13,6 +13,8 @@
 
 package uk.q3c.util.data;
 
+import uk.q3c.util.data.collection.DataList;
+
 /**
  * Utility to convert a list of values to and from String.  These are not considered suitable for presentation to the user
  * as conversions use a fixed Locale.
@@ -47,4 +49,6 @@ public interface DataConverter {
      */
 
     <V> V convertStringToValue(Class<V> elementClass, String valueString);
+
+    <C, E> DataList<E> convertStringToCollection(Class<C> collectionClass, Class<E> elementClass, String stringValue, String separator);
 }

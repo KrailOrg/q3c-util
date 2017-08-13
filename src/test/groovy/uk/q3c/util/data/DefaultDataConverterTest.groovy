@@ -13,12 +13,14 @@
 
 package uk.q3c.util.data
 
+import com.google.common.collect.ImmutableList
 import com.google.inject.Guice
 import com.google.inject.Injector
 import spock.lang.Specification
 import uk.q3c.util.UtilModule
 import uk.q3c.util.dag.DynamicDAG
 import uk.q3c.util.data.collection.AnnotationList
+import uk.q3c.util.data.collection.DataList
 
 import java.time.LocalDateTime
 
@@ -85,4 +87,20 @@ class DefaultDataConverterTest extends Specification {
         thrown(ConverterException)
     }
 
+    def "DataList round trip"() {
+        given:
+        DataList<Integer> dataList = new DataList<>(Integer.class, ImmutableList.of(1, 2, 3))
+
+        when:
+        String stringValue = converter.convertValueToString(dataList)
+
+        then:
+        stringValue == "1,2,3"
+
+        when:
+        DataList<Integer> dataList2 = converter.convertStringToCollection(DataList.class, Integer.class, stringValue, ",")
+
+        then:
+        dataList == dataList2
+    }
 }
