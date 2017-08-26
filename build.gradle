@@ -20,7 +20,9 @@ apply plugin: 'uk.q3c.kaytee'
 group='uk.q3c.util'
 
 kaytee {
-    baseVersion = "0.13.0.1"
+    version{
+        number = "0.13.1.0"
+    }
 }
 
 
