@@ -17,10 +17,10 @@ buildscript {
 apply plugin: 'kotlin'
 apply plugin: 'uk.q3c.kaytee'
 
-group='uk.q3c.util'
+group = 'uk.q3c.util'
 
 kaytee {
-    version{
+    version {
         number = "0.13.1.1"
     }
 }
