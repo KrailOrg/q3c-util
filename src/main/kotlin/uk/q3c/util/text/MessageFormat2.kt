@@ -1,6 +1,7 @@
 package uk.q3c.util.text
 
 import org.slf4j.helpers.MessageFormatter
+import java.io.Serializable
 
 /**
  * The native Java [java.text.MessageFormat] class exhibits some very strange behaviour when dealing with a single apostrophe.  The Javadoc for it even includes this warning:
@@ -55,7 +56,7 @@ import org.slf4j.helpers.MessageFormatter
  *
  *  Parameters without matching arguments are assigned a value of "??"
  */
-interface MessageFormat2 {
+interface MessageFormat2 : Serializable {
     fun format(pattern: String, vararg arguments: Any): String
     fun format(mode: MessageFormatMode, pattern: String, vararg arguments: Any): String
 }
