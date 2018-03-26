@@ -22,7 +22,7 @@ group = 'uk.q3c.util'
 
 kaytee {
     version {
-        number = "0.13.2.0"
+        number = "1.0.0.0"
     }
 }
 
