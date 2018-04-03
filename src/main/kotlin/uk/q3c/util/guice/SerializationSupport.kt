@@ -8,7 +8,6 @@ import com.google.inject.Key
 import com.google.inject.spi.InjectionPoint
 import org.apache.commons.lang3.reflect.FieldUtils
 import org.slf4j.LoggerFactory
-import java.io.ObjectInputStream
 import java.io.Serializable
 import java.lang.reflect.Constructor
 import java.lang.reflect.Field
@@ -18,12 +17,14 @@ import java.lang.reflect.Modifier
 /**
  * Created by David Sowerby on 16 Mar 2018
  */
-@FunctionalInterface
 interface SerializationSupport : Serializable {
     var excludedFieldNames: List<String>
     fun injectTransientFields(target: Any)
     fun checkForNullTransients()
-    fun deserialize(target: Any, inputStream: ObjectInputStream)
+    /**
+     * Simply combines the other two calls [injectTransientFields] and [checkForNullTransients]
+     */
+    fun deserialize(target: Any)
 }
 
 
@@ -46,10 +47,9 @@ class DefaultSerializationSupport @Inject constructor(val injectorLocator: Injec
         val constructorInjectionPoint = InjectionPoint.forConstructorOf(target.javaClass)
         val constructorParams = (constructorInjectionPoint.member as Constructor<*>).parameterTypes
         for (i in 0 until constructorInjectionPoint.dependencies.size) {
-            // ignore params which are Serializable - their associated fields will have been deserialised
-            if (!Serializable::class.java.isAssignableFrom(constructorParams[i])) {
+            // thought about ignoring params which are Serializable - their associated fields could have been deserialised
+            // but we cannot know whether the user has marked associated field as transient
                 constructorParameterKeys.add(constructorInjectionPoint.dependencies[i].key)
-            }
         }
 
 
@@ -102,7 +102,7 @@ class DefaultSerializationSupport @Inject constructor(val injectorLocator: Injec
             }
             if (constructorParameterKeys.isNotEmpty()) {
                 // somehow all the fields have been populated but not all the constructor params have been used. Warn the developer
-                log.warn("All transient fields have been populated after deserialization, but these constructor parameters were not used: $constructorParameterKeys. This can occur if you have populated a Guice injected transient field without using SerializationSupport, or you have excluded a Guice injected transient field, or you have missed an annotation from a subclass constructor parameter")
+                log.warn("All transient fields have been populated for ${target.javaClass} after deserialization, but these constructor parameters were not used: $constructorParameterKeys. This can occur if you have populated a Guice injected transient field without using SerializationSupport, or you have excluded a Guice injected transient field, or you have missed an annotation from a subclass constructor parameter")
             }
         } else {
             // a field has been missed - throw exception, suggest exclusion
@@ -114,8 +114,7 @@ class DefaultSerializationSupport @Inject constructor(val injectorLocator: Injec
         }
     }
 
-    override fun deserialize(target: Any, inputStream: ObjectInputStream) {
-        inputStream.defaultReadObject()
+    override fun deserialize(target: Any) {
         injectTransientFields(target)
         checkForNullTransients()
     }

@@ -11,10 +11,12 @@
 
 package uk.q3c.util.data;
 
+import java.io.Serializable;
+
 /**
  * Created by David Sowerby on 06/08/15.
  */
-public interface DataItemConverter<V> {
+public interface DataItemConverter<V> extends Serializable {
 
     V convertToModel(String value) throws ConversionException;
 

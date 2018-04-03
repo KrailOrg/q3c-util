@@ -13,6 +13,8 @@
 
 package uk.q3c.util.clazz;
 
+import java.io.Serializable;
+
 /**
  * Returns the un-enhanced original class from a byte enhanced instance.  Often needed when the instance is subject to reflection to identify field / class annotations.
  * <p>
@@ -21,6 +23,6 @@ package uk.q3c.util.clazz;
  * <p>
  * Created by David Sowerby on 10/05/15.
  */
-public interface UnenhancedClassIdentifier {
+public interface UnenhancedClassIdentifier extends Serializable {
     Class<?> getOriginalClassFor(Object target);
 }

@@ -15,6 +15,8 @@ package uk.q3c.util.data;
 
 import uk.q3c.util.data.collection.DataList;
 
+import java.io.Serializable;
+
 /**
  * Utility to convert a list of values to and from String.  These are not considered suitable for presentation to the user
  * as conversions use a fixed Locale.
@@ -25,7 +27,7 @@ import uk.q3c.util.data.collection.DataList;
  * See {@link uk.q3c.util.UtilModule} for an example
  * Created by David Sowerby on 27/06/15.
  */
-public interface DataConverter {
+public interface DataConverter extends Serializable {
 
 
     /**

@@ -12,6 +12,8 @@
  */
 package uk.q3c.util.forest;
 
+import java.io.Serializable;
+
 /**
  * Pass implementations of this filter to {@link TreeCopy} to filter out source nodes - also used by some navigation
  * components
@@ -20,7 +22,7 @@ package uk.q3c.util.forest;
  * @author David Sowerby
  * @date 13 Jun 2014
  */
-public interface NodeFilter<S> {
+public interface NodeFilter<S> extends Serializable {
 
     boolean accept(S node);
 }

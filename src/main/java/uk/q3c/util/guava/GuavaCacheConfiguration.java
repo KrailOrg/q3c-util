@@ -18,6 +18,7 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.RemovalListener;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 
+import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -26,7 +27,7 @@ import java.util.concurrent.TimeUnit;
  * <p>
  * Created by David Sowerby on 25/02/15.
  */
-public class GuavaCacheConfiguration {
+public class GuavaCacheConfiguration implements Serializable {
 
     private Integer concurrencyLevel;
     private Long expireAfterAccessDuration;

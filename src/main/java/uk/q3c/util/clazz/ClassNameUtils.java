@@ -13,10 +13,12 @@
 
 package uk.q3c.util.clazz;
 
+import java.io.Serializable;
+
 /**
  * Created by David Sowerby on 03 Jan 2016
  */
-public interface ClassNameUtils {
+public interface ClassNameUtils extends Serializable {
 
     /**
      * Returns a "pure" class name, ignoring any appended enhancement
