@@ -4,6 +4,7 @@ package uk.q3c.util.guice
 import com.google.inject.AbstractModule
 import com.google.inject.BindingAnnotation
 import com.google.inject.Inject
+import com.google.inject.Injector
 import com.google.inject.Key
 import com.google.inject.spi.InjectionPoint
 import org.apache.commons.lang3.reflect.FieldUtils
@@ -25,11 +26,12 @@ interface SerializationSupport : Serializable {
      * Simply combines the other two calls [injectTransientFields] and [checkForNullTransients]
      */
     fun deserialize(target: Any)
+
+    fun getInjector(): Injector
 }
 
 
 class DefaultSerializationSupport @Inject constructor(val injectorLocator: InjectorLocator) : SerializationSupport {
-
     private var log = LoggerFactory.getLogger(this.javaClass.name)
     private val candidateFieldKeys: MutableMap<Field, Key<*>> = mutableMapOf()
     private val unResolvedFieldKeys: MutableMap<Field, Key<*>> = mutableMapOf()
@@ -66,6 +68,11 @@ class DefaultSerializationSupport @Inject constructor(val injectorLocator: Injec
         }
 
     }
+
+    override fun getInjector(): Injector {
+        return injectorLocator.get()
+    }
+
 
     private fun createFieldKey(field: Field): Key<*> {
         val genericType = field.genericType
